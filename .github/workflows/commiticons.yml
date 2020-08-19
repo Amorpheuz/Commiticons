@@ -16,18 +16,22 @@ jobs:
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
 
+    # Checkout latest commit
+    - name: Checkout
+      uses: actions/checkout@v2
+
     # Fetch a dad joke from icanhazdadjoke and replace newlines with <br> tag
-    - name: get a dad-joke
+    - name: Get a dad-joke
       run: |
         echo "::set-env name=TEMP::$(curl -H "Accept: text/plain" https://icanhazdadjoke.com/ | sed -r ':a;N;$!ba;s/\n/<br>/g' | tr -d '\r')"
     
     # Replace double quotes with single quotes to avoid clashes in further text
-    - name: escape double-quotes
+    - name: Escape double-quotes
       run: |
         echo "::set-env name=DAD_JOKE::$(echo "$TEMP" | tr \" \')"
 
     # Runs a single command using the runners shell
-    - name: create commit comment
+    - name: Create commit comment
       run: |
         curl \
         -X POST \
@@ -35,3 +39,17 @@ jobs:
         -H 'authorization: Bearer ${{ secrets.GITHUB_TOKEN }}' \
         $GITHUB_API_URL/repos/$GITHUB_REPOSITORY/commits/$GITHUB_SHA/comments \
         -d "{\"body\":\"| ![Commiticon](https://avatars.dicebear.com/api/human/$GITHUB_SHA.svg?h=250) | $DAD_JOKE |\n|:-:|:-:|\"}"
+    
+    # Write file to .commiticons folder
+    - name: Write Commiticon
+      run: |
+        curl https://avatars.dicebear.com/api/human/$(echo $GITHUB_SHA).svg?h=250 --output .commiticons/$(echo $GITHUB_SHA).svg
+    
+    # Push changes
+    - name: Push Changes
+      run: |
+        git config user.name Amorpheuz
+        git config user.email connect@amorpheuz.dev
+        git add .commiticons/
+        git commit -m "Generated Commiticon for: $GITHUB_SHA"
+        git push
