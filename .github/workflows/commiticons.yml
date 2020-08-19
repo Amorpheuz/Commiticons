@@ -1,0 +1,37 @@
+name: Generate Commiticon
+
+# Controls when the action will run. Triggers the workflow on push
+# events but only for the main branch
+on:
+  push:
+    branches: [ main ]
+
+# A workflow run is made up of one or more jobs that can run sequentially or in parallel
+jobs:
+  # This workflow contains a single job called "build"
+  build:
+    # The type of runner that the job will run on
+    runs-on: ubuntu-latest
+
+    # Steps represent a sequence of tasks that will be executed as part of the job
+    steps:
+
+    # Fetch a dad joke from icanhazdadjoke and replace newlines with <br> tag
+    - name: get a dad-joke
+      run: |
+        echo "::set-env name=TEMP::$(curl -H "Accept: text/plain" https://icanhazdadjoke.com/ | sed -r ':a;N;$!ba;s/\n/<br>/g' | tr -d '\r')"
+    
+    # Replace double quotes with single quotes to avoid clashes in further text
+    - name: escape double-quotes
+      run: |
+        echo "::set-env name=DAD_JOKE::$(echo "$TEMP" | tr \" \')"
+
+    # Runs a single command using the runners shell
+    - name: create commit comment
+      run: |
+        curl \
+        -X POST \
+        -H "Accept: application/vnd.github.v3+json" \
+        -H 'authorization: Bearer ${{ secrets.GITHUB_TOKEN }}' \
+        $GITHUB_API_URL/repos/$GITHUB_REPOSITORY/commits/$GITHUB_SHA/comments \
+        -d "{\"body\":\"| ![Commiticon](https://avatars.dicebear.com/api/human/$GITHUB_SHA.svg?h=250) | $DAD_JOKE |\n|:-:|:-:|\"}"
