@@ -7,6 +7,8 @@ Bring your commits to life with unique Avatars for each of them!
 
 The concept of identicons has been around for long and many websites use it to generate a default avatar for users. Since all git commits already have unique hashes, why not generate identicons for them? I configured a small (but interesting) workflow to automatically generate unique avatars for your commits. I call these avatars **Commiticons**, identicons but for commits! 😬🎉
 
+_A submission for the [DEV: GitHub Actions For Open Source!](https://dev.to/devteam/announcing-the-github-actions-hackathon-on-dev-3ljn) hackathon_
+
 ## Table of Contents
 
 - [Workflow File](#workflow-file)
