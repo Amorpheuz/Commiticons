@@ -1,5 +1,5 @@
 # Commiticons
-![Workflow Status](https://img.shields.io/github/workflow/status/amorpheuz/commiticons/Generate%20Commiticon)
+![Workflow Status](https://img.shields.io/github/workflow/status/amorpheuz/commiticons/Generate%20Commiticon) ![License](https://img.shields.io/github/license/amorpheuz/commiticons) [![Twitter Follow](https://img.shields.io/twitter/follow/amorpheuz)](https://twitter.com/amorpheuz)
 
 Bring your commits to life with unique Avatars for each of them! 
 
