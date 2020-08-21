@@ -59,7 +59,7 @@ Switch to the `Actions` tab to see the workflow in action. Once the workflow is 
 1. First, I check-out my repo with [actions/checkout](https://github.com/actions/checkout) since I want to save the Commiticons to my repo.
    ```yml
    - name: Checkout
-      uses: actions/checkout@v2
+     uses: actions/checkout@v2
    ```
 
 2. Next, I want my Commiticons to be accompanied by a joke to make them even more fun. So, I use the infamous [icanhazdadjoke API](https://icanhazdadjoke.com/api) to grab one for me via cURL.
@@ -69,8 +69,8 @@ Switch to the `Actions` tab to see the workflow in action. Once the workflow is 
    
    ```yml
    - name: Get a dad-joke
-      run: |
-        echo "::set-env name=TEMP::$(curl -H "Accept: text/plain" https://icanhazdadjoke.com/ | sed -r ':a;N;$!ba;s/\n/<br>/g' | tr -d '\r')"
+     run: |
+       echo "::set-env name=TEMP::$(curl -H "Accept: text/plain" https://icanhazdadjoke.com/ | sed -r ':a;N;$!ba;s/\n/<br>/g' | tr -d '\r')"
    ```
 
    2. Next, I replace all " in the text with ', via tr, in order to avoid clashes with the " with the commands in the cURL command. The $TEMP is the env variable that saves output of previous command.
@@ -87,13 +87,13 @@ Switch to the `Actions` tab to see the workflow in action. Once the workflow is 
 
    ```yml
    - name: Create commit comment
-      run: |
-        curl \
-        -X POST \
-        -H "Accept: application/vnd.github.v3+json" \
-        -H 'authorization: Bearer ${{ secrets.GITHUB_TOKEN }}' \
-        $GITHUB_API_URL/repos/$GITHUB_REPOSITORY/commits/$GITHUB_SHA/comments \
-        -d "{\"body\":\"| ![Commiticon](https://avatars.dicebear.com/api/human/$GITHUB_SHA.svg?h=250) | $DAD_JOKE |\n|:-:|:-:|\"}"
+     run: |
+       curl \
+       -X POST \
+       -H "Accept: application/vnd.github.v3+json" \
+       -H 'authorization: Bearer ${{ secrets.GITHUB_TOKEN }}' \
+       $GITHUB_API_URL/repos/$GITHUB_REPOSITORY/commits/$GITHUB_SHA/comments \
+       -d "{\"body\":\"| ![Commiticon](https://avatars.dicebear.com/api/human/$GITHUB_SHA.svg?h=250) | $DAD_JOKE |\n|:-:|:-:|\"}"
    ```
    
    The process of generating the Commiticons is handled by [Dicebear Avatars](https://avatars.dicebear.com/), a hidden gem that I was glad I came across! They are the ❤ and soul of Commiticons.
@@ -104,16 +104,16 @@ Switch to the `Actions` tab to see the workflow in action. Once the workflow is 
 
    ```yml
    - name: Write Commiticon
-      run: |
-        curl https://avatars.dicebear.com/api/human/$(echo $GITHUB_SHA).svg?h=250 --output .commiticons/$(echo $GITHUB_SHA).svg
-
-    - name: Push Changes
-      run: |
-        git config user.name Amorpheuz
-        git config user.email connect@amorpheuz.dev
-        git add .commiticons/
-        git commit -m "Generated Commiticon for: $GITHUB_SHA"
-        git push
+     run: |
+       curl https://avatars.dicebear.com/api/human/$(echo $GITHUB_SHA).svg?h=250 --output .commiticons/$(echo $GITHUB_SHA).svg
+   
+   - name: Push Changes
+     run: |
+       git config user.name Amorpheuz
+       git config user.email connect@amorpheuz.dev
+       git add .commiticons/
+       git commit -m "Generated Commiticon for: $GITHUB_SHA"
+       git push
    ```
    
 ## Credits
