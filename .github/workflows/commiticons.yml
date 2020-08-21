@@ -30,8 +30,8 @@ jobs:
       run: |
         echo "::set-env name=DAD_JOKE::$(echo "$TEMP" | tr \" \')"
 
-    # Runs a single command using the runners shell
-    - name: Create commit comment
+    # Fetch Commiticon and add as Commit Comment
+    - name: Fetch Commiticon and add as Commit Comment
       run: |
         curl \
         -X POST \
