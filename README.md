@@ -11,7 +11,7 @@ The concept of identicons has been around for long and many websites use it to g
 
 - [Workflow File](#workflow-file)
 - [Core Functionality](#core-functionality)
-- [How does .github/workflows/commiticons.yml work?](#how-does-.github/workflows/commiticons.yml-work-)
+- [How does .github/workflows/commiticons.yml work?](#how-does-githubworkflowscommiticonsyml-work)
 - [Credits](#credits)
 
 ## Workflow File
