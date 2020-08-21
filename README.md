@@ -127,4 +127,5 @@ Here are all the projects that make this workflow possible, A huge shout out to 
 - [actions/checkout](https://github.com/actions/checkout) for making repo interactions a breeze. 🏄🏽‍♂️
 - The `sed`, `cURL` and `tr` commands. 👨🏽‍💻
 - [GitHub Docs](https://docs.github.com/en) for all the knowledge! 🧠
-   
+
+_If you are confused about something, have some ideas, or just want to chat; reach out to me via my Twitter [@Amorpheuz](https://twitter.com/amorpheuz) or [open an Issue](https://github.com/Amorpheuz/Commiticons/issues/new)!_
