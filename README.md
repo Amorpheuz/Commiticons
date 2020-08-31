@@ -7,7 +7,10 @@ Bring your commits to life with unique Avatars for each of them!
 
 The concept of identicons has been around for long and many websites use it to generate a default avatar for users. Since all git commits already have unique hashes, why not generate identicons for them? I configured a small (but interesting) workflow to automatically generate unique avatars for your commits. I call these avatars **Commiticons**, identicons but for commits! 😬🎉
 
-_A submission for the [DEV: GitHub Actions For Open Source!](https://dev.to/devteam/announcing-the-github-actions-hackathon-on-dev-3ljn) hackathon_
+_A submission for the [DEV: GitHub Actions For Open Source!](https://dev.to/devteam/announcing-the-github-actions-hackathon-on-dev-3ljn) hackathon! Read more about commiticons on my blog post [Commiticons: Hashes are boring, Identify commits with Avatars via Actions](https://dev.to/amorpheuz/commiticons-hashes-are-boring-identify-commits-with-avatars-via-actions-5d88)._
+
+### Demo
+![](https://github.com/Amorpheuz/Commiticons/blob/main/commiticons-demo.gif)
 
 ## Table of Contents
 
